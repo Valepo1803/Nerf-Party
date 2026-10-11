@@ -13,102 +13,168 @@ export default function Home() {
     setSubmitted(true);
   };
 
-  return (
-    <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-4 sm:p-6">
-      {/* Container Card */}
-      <div className="w-full max-w-lg bg-slate-800 border-2 border-orange-500 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+return (
+    <main className="min-h-screen bg-[#1e40af] flex items-center justify-center p-4 font-sans select-none">
+
+      {/* Scrollable Card Container */}
+      <div className="p-5 overflow-y-auto flex-1 space-y-4">
         
-        {/* Decorative Badge */}
-        <div className="flex justify-center mb-4">
-          <span className="bg-orange-500 text-slate-900 font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">
-            🎯 Nerf War Birthday Party! 🎯
-          </span>
+        {/* Main 3D Printed VIP Pass Card */}
+        <div className="bg-[#1d4ed8] border-4 border-black rounded-2xl p-5 shadow-2xl relative overflow-hidden">
+          
+          {/* Lanyard Slot */}
+          <div className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-3 bg-black rounded-full border border-blue-900"></div>
+
+          {/* Left Side Grip Lines */}
+          <div className="absolute left-0 top-12 bottom-12 w-2.5 flex flex-col justify-between py-1">
+            <div className="w-full h-3 bg-black rounded-r"></div>
+            <div className="w-full h-3 bg-black rounded-r"></div>
+            <div className="w-full h-3 bg-black rounded-r"></div>
+            <div className="w-full h-3 bg-black rounded-r"></div>
+            <div className="w-full h-3 bg-black rounded-r"></div>
+          </div>
+
+          {/* Right Side Grip Lines */}
+          <div className="absolute right-0 top-12 bottom-12 w-2.5 flex flex-col justify-between py-1">
+            <div className="w-full h-3 bg-black rounded-l"></div>
+            <div className="w-full h-3 bg-black rounded-l"></div>
+            <div className="w-full h-3 bg-black rounded-l"></div>
+            <div className="w-full h-3 bg-black rounded-l"></div>
+            <div className="w-full h-3 bg-black rounded-l"></div>
+          </div>
+
+          {/* Card Content Wrapper */}
+          <div className="px-2">
+            
+            {/* Header Badge */}
+            <div className="text-[11px] font-black tracking-widest text-orange-500 uppercase mb-1">
+              VIP PASS: NERF PARTY ZONE
+            </div>
+
+            {/* Title & Target Layout Grid */}
+            <div className="flex justify-between items-start">
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-black text-orange-500 uppercase tracking-tight leading-none drop-shadow-[0_2px_2px_rgba(0,0,0,0.6)]">
+                  VICTOR<br />IS TURNING 8!
+                </h1>
+              </div>
+
+              {/* Target Graphic */}
+              <div className="w-16 h-16 bg-white rounded-full border-4 border-black flex items-center justify-center shadow-md relative flex-shrink-0">
+                <div className="w-12 h-12 bg-orange-500 rounded-full border-2 border-black flex items-center justify-center">
+                  <div className="w-7 h-7 bg-white rounded-full border-2 border-black flex items-center justify-center">
+                    <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Mission Details */}
+            <div className="mt-3 space-y-0.5 text-xs font-black tracking-wide uppercase text-white">
+              <p>MISSION: BOUNCE & ADVENTURE</p>
+              <p className="text-orange-400">DATE: SUNDAY, NOV 15</p>
+              <p className="text-orange-400">TIME: 2:00 PM</p>
+            </div>
+
+            {/* Location & Info */}
+            <div className="mt-3 pt-2 border-t border-blue-600 text-[10px] sm:text-[11px] font-bold space-y-0.5 text-blue-100 uppercase">
+              <p className="text-white font-black">LOCATION: EXTREME BOUNCE INFLATAPARK (TABLE 4)</p>
+              <p>ADDRESS: 10153 KING GEORGE BLVD. UNIT 3700</p>
+              <p className="text-white font-black">RSVP TO DIEGO: 604-880-8350</p>
+              <div className="flex justify-between items-center pt-1">
+                <p className="text-orange-300 font-black">NO BLASTERS NEEDED - SOCKS REQUIRED!</p>
+                <span className="text-orange-400 text-xs font-black">👆<br /><span className="text-[8px]">TAP TARGET</span></span>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        {/* Header */}
-        <h1 className="text-3xl sm:text-4xl font-black text-center text-amber-400 tracking-tight uppercase">
-          Gear Up & Join The Fun!
-        </h1>
-        <p className="text-center text-slate-300 text-sm sm:text-base mt-2 mb-6">
-          Please let us know if your child will be joining the battle!
-        </p>
-
-        {/* Success Message State */}
-        {submitted ? (
-          <div className="bg-emerald-950/80 border border-emerald-500 rounded-2xl p-6 text-center animate-fade-in">
-            <span className="text-4xl">🎉</span>
-            <h2 className="text-2xl font-bold text-emerald-400 mt-2">RSVP Received!</h2>
-            <p className="text-slate-300 text-sm mt-1">
-              Thanks <strong>{parentName}</strong>! We can't wait to see <strong>{childName}</strong> at the party.
-            </p>
-            <p className="text-xs text-emerald-300/80 mt-3">
-              {isStaying ? "🟢 You indicated that you will be staying!" : "🔴 Drop-off only."}
-            </p>
-            <button
-              onClick={() => setSubmitted(false)}
-              className="mt-5 text-xs text-slate-400 hover:text-white underline transition-colors"
-            >
-              Submit another response
-            </button>
-          </div>
-        ) : (
-          /* RSVP Form */
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Parent Name */}
-            <div>
-              <label className="block text-xs font-bold text-orange-400 uppercase tracking-wider mb-1">
-                Parent / Guardian Name
-              </label>
-              <input
-                type="text"
-                required
-                value={parentName}
-                onChange={(e) => setParentName(e.target.value)}
-                placeholder="e.g. Jane Doe"
-                className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-sm"
-              />
+        {/* Interactive Form Box (Styled like a matching tactical module) */}
+        <div className="bg-[#111827] border-2 border-orange-500/80 rounded-2xl p-4 shadow-xl relative">
+          
+          {submitted ? (
+            <div className="bg-emerald-950/90 border border-emerald-500 rounded-xl p-4 text-center">
+              <span className="text-3xl">🎯</span>
+              <h2 className="text-lg font-bold text-emerald-400 mt-1 uppercase tracking-wider">RSVP Confirmed!</h2>
+              <p className="text-slate-300 text-xs mt-1">
+                Thanks <strong>{parentName}</strong>! We're excited for <strong>{childName}</strong>.
+              </p>
+              <p className="text-[11px] text-emerald-300 mt-2 font-semibold">
+                {isStaying ? "🟢 Parent staying indicated" : "🔴 Drop-off mode"}
+              </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="mt-3 text-[11px] text-blue-400 hover:underline uppercase tracking-wider font-bold"
+              >
+                Edit Response
+              </button>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <div className="text-[11px] font-black uppercase text-orange-400 tracking-wider text-center border-b border-slate-800 pb-2">
+                Secure Your Slot 🎯
+              </div>
 
-            {/* Child Name */}
-            <div>
-              <label className="block text-xs font-bold text-orange-400 uppercase tracking-wider mb-1">
-                Child's Name
-              </label>
-              <input
-                type="text"
-                required
-                value={childName}
-                onChange={(e) => setChildName(e.target.value)}
-                placeholder="e.g. Alex Doe"
-                className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-sm"
-              />
-            </div>
-
-            {/* Checkbox: Parent Staying */}
-            <div className="pt-2">
-              <label className="flex items-center space-x-3 bg-slate-900/60 border border-slate-700/80 hover:border-orange-500/50 p-3.5 rounded-xl cursor-pointer transition-all">
+              {/* Parent Name */}
+              <div>
+                <label className="block text-[10px] font-extrabold text-orange-400 uppercase tracking-wider mb-1">
+                  Parent / Guardian Name
+                </label>
                 <input
-                  type="checkbox"
-                  checked={isStaying}
-                  onChange={(e) => setIsStaying(e.target.checked)}
-                  className="w-5 h-5 accent-orange-500 rounded cursor-pointer"
+                  type="text"
+                  required
+                  value={parentName}
+                  onChange={(e) => setParentName(e.target.value)}
+                  placeholder="e.g. Jane Doe"
+                  className="w-full bg-[#050b14] border border-slate-700 rounded-xl px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 text-xs"
                 />
-                <span className="text-sm font-medium text-slate-200">
-                  Will you (the parent) be staying for the party?
-                </span>
-              </label>
-            </div>
+              </div>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-base uppercase tracking-wider py-3.5 px-6 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 mt-4"
-            >
-              Confirm RSVP 🎯
-            </button>
-          </form>
-        )}
+              {/* Child Name */}
+              <div>
+                <label className="block text-[10px] font-extrabold text-orange-400 uppercase tracking-wider mb-1">
+                  Child's Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={childName}
+                  onChange={(e) => setChildName(e.target.value)}
+                  placeholder="e.g. Victor"
+                  className="w-full bg-[#050b14] border border-slate-700 rounded-xl px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 text-xs"
+                />
+              </div>
+
+              {/* Checkbox */}
+              <div>
+                <label className="flex items-center space-x-2.5 bg-[#050b14] border border-slate-800 hover:border-slate-700 p-2.5 rounded-xl cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={isStaying}
+                    onChange={(e) => setIsStaying(e.target.checked)}
+                    className="w-4 h-4 accent-orange-500 rounded cursor-pointer"
+                  />
+                  <span className="text-[11px] font-bold text-slate-200 uppercase">
+                    Will you (parent) be staying?
+                  </span>
+                </label>
+              </div>
+
+              {/* Submit Button */}
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-xs uppercase tracking-widest py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95 border border-orange-400 mt-1 flex items-center justify-center space-x-2"
+              >
+                <span>🎯 Confirm RSVP 🎯</span>
+              </button>
+            </form>
+          )}
+
+        </div>
+
       </div>
+    
     </main>
   );
 }
