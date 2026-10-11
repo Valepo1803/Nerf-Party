@@ -149,22 +149,35 @@ export default function Home() {
 
               {/* Location & Info */}
               <div className="mt-3 pt-2 border-t border-blue-600 text-[10px] sm:text-[11px] font-bold space-y-0.5 text-blue-100 uppercase">
-                <p className="text-white font-black">
-                  LOCATION: EXTREME BOUNCE INFLATAPARK (TABLE 4)
+                <p className="text-white font-black ">
+                  LOCATION:{" "}
+                  <a
+                    className="underline"
+                    href="https://maps.app.goo.gl/zug3jJ8d99XUr14h7"
+                  >
+                    EXTREME BOUNCE INFLATAPARK
+                  </a>{" "}
+                  (TABLE 4)
                 </p>
-                <p>ADDRESS: 10153 KING GEORGE BLVD. UNIT 3700</p>
+                <p>
+                  ADDRESS:{" "}
+                  <a
+                    className="underline"
+                    href="https://maps.app.goo.gl/zug3jJ8d99XUr14h7"
+                  >
+                    10153 KING GEORGE BLVD.
+                  </a>{" "}
+                  UNIT 3700
+                </p>
                 <p className="text-white font-black">
-                  RSVP TO DIEGO: 604-880-8350
+                  ANY QUESTIONS?
+                  <br />
+                  CALL DIEGO: 604-880-8350
                 </p>
                 <div className="flex justify-between items-center pt-1">
                   <p className="text-orange-300 font-black">
                     NO BLASTERS NEEDED - SOCKS REQUIRED!
                   </p>
-                  <span className="text-orange-400 text-xs font-black">
-                    👆
-                    <br />
-                    <span className="text-[8px]">TAP TARGET</span>
-                  </span>
                 </div>
               </div>
             </div>
@@ -173,18 +186,24 @@ export default function Home() {
           {/* Interactive Form Box (Styled like a matching tactical module) */}
           <div className="bg-[#111827] border-2 border-orange-500/80 rounded-2xl p-4 shadow-xl relative">
             {submitted ? (
-              <div className="bg-emerald-950/90 border border-emerald-500 rounded-xl p-4 text-center">
-                <span className="text-3xl">🎯</span>
+              <div className="flex flex-col items-center text-center">
+                {/* Custom CSS Nerf Target */}
+                <div className="w-12 h-12 bg-white rounded-full border-2 border-black flex items-center justify-center shadow-md relative my-1">
+                  <div className="w-9 h-9 bg-orange-500 rounded-full border border-black flex items-center justify-center">
+                    <div className="w-5 h-5 bg-white rounded-full border border-black flex items-center justify-center">
+                      <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
                 <h2 className="text-lg font-bold text-emerald-400 mt-1 uppercase tracking-wider">
                   RSVP Confirmed!
                 </h2>
                 <p className="text-slate-300 text-xs mt-1">
-                  Thanks! We're excited for <strong>{childName}</strong>.
+                  Thanks! We're excited to see <strong>{childName}</strong> at
+                  the party.
                 </p>
                 <p className="text-[11px] text-emerald-300 mt-2 font-semibold">
-                  {isStaying
-                    ? "🟢 Parent staying indicated"
-                    : "🔴 Drop-off mode"}
+                  {isStaying ? "🟢 Parent staying" : "🔴 Parent not staying"}
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
@@ -196,7 +215,7 @@ export default function Home() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="text-[11px] font-black uppercase text-orange-400 tracking-wider text-center border-b border-slate-800 pb-2">
-                  Secure Your Slot 🎯
+                  RSVP for Victor's Nerf Party!
                 </div>
 
                 {/* Child Name */}
@@ -235,8 +254,7 @@ export default function Home() {
                   disabled={loading}
                   className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-xs uppercase tracking-widest py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95 border border-orange-400 mt-1 flex items-center justify-center space-x-2"
                 >
-                  {loading ? "Saving..." : "Confirm RSVP"}
-                  <span>🎯 Confirm RSVP 🎯</span>
+                  {loading ? "Saving..." : "Confirm RSVP "}
                 </button>
               </form>
             )}
