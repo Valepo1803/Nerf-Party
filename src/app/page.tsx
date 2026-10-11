@@ -11,6 +11,7 @@ export default function Home() {
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
     const { data, error } = await supabase
       .from('rsvps')
       .insert([
@@ -111,7 +112,7 @@ return (
                 <span className="text-3xl">🎯</span>
                 <h2 className="text-lg font-bold text-emerald-400 mt-1 uppercase tracking-wider">RSVP Confirmed!</h2>
                 <p className="text-slate-300 text-xs mt-1">
-                  Thanks <strong>{parentName}</strong>! We're excited for <strong>{childName}</strong>.
+                  Thanks! We're excited for <strong>{childName}</strong>.
                 </p>
                 <p className="text-[11px] text-emerald-300 mt-2 font-semibold">
                   {isStaying ? "🟢 Parent staying indicated" : "🔴 Drop-off mode"}
@@ -127,21 +128,6 @@ return (
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="text-[11px] font-black uppercase text-orange-400 tracking-wider text-center border-b border-slate-800 pb-2">
                   Secure Your Slot 🎯
-                </div>
-
-                {/* Parent Name */}
-                <div>
-                  <label className="block text-[10px] font-extrabold text-orange-400 uppercase tracking-wider mb-1">
-                    Parent / Guardian Name
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={parentName}
-                    onChange={(e) => setParentName(e.target.value)}
-                    placeholder="e.g. Jane Doe"
-                    className="w-full bg-[#050b14] border border-slate-700 rounded-xl px-3 py-2 text-white placeholder-slate-600 focus:outline-none focus:border-orange-500 text-xs"
-                  />
                 </div>
 
                 {/* Child Name */}
