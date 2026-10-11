@@ -3,14 +3,24 @@
 import { useState } from 'react';
 
 export default function Home() {
-  const [parentName, setParentName] = useState('');
   const [childName, setChildName] = useState('');
   const [isStaying, setIsStaying] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    const { data, error } = await supabase
+      .from('rsvps')
+      .insert([
+        {
+          child_name: childName,
+          is_staying: isStaying,
+        },
+      ]);
+
+    setLoading(false);
   };
 
 return (
