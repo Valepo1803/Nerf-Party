@@ -17,7 +17,6 @@ export default function Home() {
     setLoading(true);
 
     if (rsvpId) {
-      // 🔄 UPDATE existing row if we already have an ID
       const { error } = await supabase
         .from("rsvps")
         .update({
@@ -33,6 +32,18 @@ export default function Home() {
         alert(`Database error: ${error.message}`);
       } else {
         setSubmitted(true);
+        try {
+          await fetch("/api/notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              child_name: childName,
+              is_staying: isStaying,
+            }),
+          });
+        } catch (err) {
+          console.error("Failed to send notification:", err);
+        }
       }
     } else {
       // ➕ INSERT new row on first submission and grab its ID
@@ -56,6 +67,19 @@ export default function Home() {
           setRsvpId(data[0].id); // Lock in the ID for future edits
         }
         setSubmitted(true);
+
+        try {
+          await fetch("/api/notify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              child_name: childName,
+              is_staying: isStaying,
+            }),
+          });
+        } catch (err) {
+          console.error("Failed to send notification:", err);
+        }
       }
     }
   };
