@@ -163,8 +163,10 @@ return (
                 {/* Submit Button */}
                 <button
                   type="submit"
+                  disabled={loading}
                   className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-xs uppercase tracking-widest py-3 px-4 rounded-xl shadow-lg transition-all transform active:scale-95 border border-orange-400 mt-1 flex items-center justify-center space-x-2"
                 >
+                  {loading ? 'Saving...' : 'Confirm RSVP'}
                   <span>🎯 Confirm RSVP 🎯</span>
                 </button>
               </form>
