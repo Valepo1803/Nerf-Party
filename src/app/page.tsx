@@ -1,69 +1,114 @@
-import Image from "next/image";
+'use client';
+
+import { useState } from 'react';
 
 export default function Home() {
+  const [parentName, setParentName] = useState('');
+  const [childName, setChildName] = useState('');
+  const [isStaying, setIsStaying] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.SubmitEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-slate-900 text-white flex flex-col items-center justify-center p-4 sm:p-6">
+      {/* Container Card */}
+      <div className="w-full max-w-lg bg-slate-800 border-2 border-orange-500 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        
+        {/* Decorative Badge */}
+        <div className="flex justify-center mb-4">
+          <span className="bg-orange-500 text-slate-900 font-extrabold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">
+            🎯 Nerf War Birthday Party! 🎯
+          </span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+        {/* Header */}
+        <h1 className="text-3xl sm:text-4xl font-black text-center text-amber-400 tracking-tight uppercase">
+          Gear Up & Join The Fun!
+        </h1>
+        <p className="text-center text-slate-300 text-sm sm:text-base mt-2 mb-6">
+          Please let us know if your child will be joining the battle!
+        </p>
+
+        {/* Success Message State */}
+        {submitted ? (
+          <div className="bg-emerald-950/80 border border-emerald-500 rounded-2xl p-6 text-center animate-fade-in">
+            <span className="text-4xl">🎉</span>
+            <h2 className="text-2xl font-bold text-emerald-400 mt-2">RSVP Received!</h2>
+            <p className="text-slate-300 text-sm mt-1">
+              Thanks <strong>{parentName}</strong>! We can't wait to see <strong>{childName}</strong> at the party.
+            </p>
+            <p className="text-xs text-emerald-300/80 mt-3">
+              {isStaying ? "🟢 You indicated that you will be staying!" : "🔴 Drop-off only."}
+            </p>
+            <button
+              onClick={() => setSubmitted(false)}
+              className="mt-5 text-xs text-slate-400 hover:text-white underline transition-colors"
+            >
+              Submit another response
+            </button>
+          </div>
+        ) : (
+          /* RSVP Form */
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Parent Name */}
+            <div>
+              <label className="block text-xs font-bold text-orange-400 uppercase tracking-wider mb-1">
+                Parent / Guardian Name
+              </label>
+              <input
+                type="text"
+                required
+                value={parentName}
+                onChange={(e) => setParentName(e.target.value)}
+                placeholder="e.g. Jane Doe"
+                className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-sm"
+              />
+            </div>
+
+            {/* Child Name */}
+            <div>
+              <label className="block text-xs font-bold text-orange-400 uppercase tracking-wider mb-1">
+                Child's Name
+              </label>
+              <input
+                type="text"
+                required
+                value={childName}
+                onChange={(e) => setChildName(e.target.value)}
+                placeholder="e.g. Alex Doe"
+                className="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500 transition-all text-sm"
+              />
+            </div>
+
+            {/* Checkbox: Parent Staying */}
+            <div className="pt-2">
+              <label className="flex items-center space-x-3 bg-slate-900/60 border border-slate-700/80 hover:border-orange-500/50 p-3.5 rounded-xl cursor-pointer transition-all">
+                <input
+                  type="checkbox"
+                  checked={isStaying}
+                  onChange={(e) => setIsStaying(e.target.checked)}
+                  className="w-5 h-5 accent-orange-500 rounded cursor-pointer"
+                />
+                <span className="text-sm font-medium text-slate-200">
+                  Will you (the parent) be staying for the party?
+                </span>
+              </label>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-slate-950 font-black text-base uppercase tracking-wider py-3.5 px-6 rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 mt-4"
+            >
+              Confirm RSVP 🎯
+            </button>
+          </form>
+        )}
+      </div>
+    </main>
   );
 }
