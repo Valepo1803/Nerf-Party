@@ -15,21 +15,27 @@ export async function POST(request: Request) {
     const stayingText = is_staying ? "🟢 Parent is Staying" : "🔴 Parent is Not Staying";
     const message = `🎯 NEW NERF PARTY RSVP!\n\nChild: ${child_name}\nStatus: ${stayingText}`;
 
-    // Send request to Telegram's API
-    const telegramRes = await fetch(
-      `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
-      {
+    const chatIdsArray = CHAT_IDS.split(",").map((id) => id.trim());
+
+    // Send to all chat IDs concurrently
+    const promises = chatIdsArray.map((chatId) =>
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id: CHAT_IDS,
+          chat_id: chatId,
           text: message,
         }),
-      }
+      })
     );
 
-    if (!telegramRes.ok) {
-      throw new Error("Failed to send Telegram message");
+    const results = await Promise.all(promises);
+
+    // Check if any failed
+    for (const res of results) {
+      if (!res.ok) {
+        throw new Error("Failed to send Telegram message to one or more recipients");
+      }
     }
 
     return NextResponse.json({ success: true });
