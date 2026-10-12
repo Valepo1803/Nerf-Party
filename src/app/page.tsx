@@ -144,11 +144,12 @@ export default function Home() {
               <div className="mt-3 space-y-0.5 text-xs font-black tracking-wide uppercase text-white">
                 <p>MISSION: BOUNCE & ADVENTURE</p>
                 <p className="text-orange-400">DATE: SUNDAY, NOV 15</p>
-                <p className="text-orange-400">TIME: 2:00 PM</p>
+                <p className="text-orange-400">TIME: 2:00 PM - 4:30 PM</p>
               </div>
 
               {/* Location & Info */}
               <div className="mt-3 pt-2 border-t border-blue-600 text-[10px] sm:text-[11px] font-bold space-y-0.5 text-blue-100 uppercase">
+                <p className ="text-orange-400">Click underlined Links for directions ↓</p>
                 <p className="text-white font-black ">
                   LOCATION:{" "}
                   <a
@@ -174,11 +175,6 @@ export default function Home() {
                   <br />
                   CALL DIEGO: 604-880-8350
                 </p>
-                <div className="flex justify-between items-center pt-1">
-                  <p className="text-orange-300 font-black">
-                    NO BLASTERS NEEDED - SOCKS REQUIRED!
-                  </p>
-                </div>
               </div>
             </div>
           </div>
