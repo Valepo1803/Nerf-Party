@@ -5,9 +5,9 @@ export async function POST(request: Request) {
     const { child_name, is_staying } = await request.json();
 
     const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+    const CHAT_IDS = process.env.TELEGRAM_CHAT_ID;
 
-    if (!BOT_TOKEN || !CHAT_ID) {
+    if (!BOT_TOKEN || !CHAT_IDS) {
       return NextResponse.json({ error: "Missing Telegram config" }, { status: 500 });
     }
 
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          chat_id: CHAT_ID,
+          chat_id: CHAT_IDS,
           text: message,
         }),
       }
