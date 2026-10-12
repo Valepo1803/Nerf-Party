@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     }
 
     // Format the message for your dad
-    const stayingText = is_staying ? "🟢 Parent is Staying" : "🔴 Drop-off Mode";
+    const stayingText = is_staying ? "🟢 Parent is Staying" : "🔴 Parent is Not Staying";
     const message = `🎯 NEW NERF PARTY RSVP!\n\nChild: ${child_name}\nStatus: ${stayingText}`;
 
     // Send request to Telegram's API
